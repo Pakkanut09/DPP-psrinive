@@ -1,2 +1,2 @@
 1
-find . | wc -l | bcargv.sh
+find . | wc -l       

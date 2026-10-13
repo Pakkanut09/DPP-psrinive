@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Basics</title>
+  <style>
+    html,body{height:100%;margin:0}
+    body{background:#FFC0CB;font-family:Arial,Helvetica,sans-serif}
+    header{text-align:center;margin:40px 0}
+    header h1{color:#FFFFFF;font-size:3rem;margin:0}
+    .shops{display:flex;gap:20px;justify-content:center;align-items:flex-start;flex-wrap:wrap;padding:0 20px}
+    .shop{max-width:320px;text-align:center}
+    .shop img{width:100%;height:auto;display:block;border:1px solid rgba(0,0,0,0.1)}
+    hr{border:0;border-top:2px solid rgba(0,0,0,0.1);margin:40px 0;width:100%}
+    footer{font-family:monospace;font-style:italic;text-align:right;padding:10px 20px}
+    a{color:blue;text-decoration:underline}
+  </style>
+</head>
+<body>
+  <header>
+
+    <h1> Mamma Mia !</h1>
+  </header>
+
+  <main>
+    <section class="shops">
+      <figure class="shop">
+    <a href="https://www.lazada.com" target="_blank" rel="noopener">
+        <img src="https://www.tmogroup.asia/wp-content/uploads/2024/02/Lazada-logo.png" alt="Lazada logo">
+    </a>
+      </figure>
+
+      <figure class="shop">
+        <a href="https://www.shopee.co.th" target="_blank" rel="noopener">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg?utm_source=th.wikipedia.org&utm_campaign=index&utm_content=original" alt="Shopee logo">
+        </a>
+      </figure>
+    </section>
+
+    <hr>
+
+    <footer>
+      <span id="copyright">© psrinive <span id="year"></span></span>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

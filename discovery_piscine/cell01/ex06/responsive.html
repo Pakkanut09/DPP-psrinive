@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Two-box Table</title>
+	<style>
+		body { margin: 0; }
+		.table-wrapper {
+			overflow-x: auto;
+			width: 100%;
+		}
+		table { border-collapse: collapse; width: 50%; min-width: 320px; margin: 20px auto; border: 1px solid #000; }
+		td { width: 50%; height: 150px; font-family: Arial, sans-serif; font-size: 1.25rem; color: #222; border: 2px solid #000; }
+		.box1 { background: #C6CA7B; }
+		.box2 { background: #F6BCA6; }
+	</style>
+</head>
+<body>
+	<div class="table-wrapper">
+		<table>
+		<tr>
+			<td class="box1">First Cell</td>
+			<td class="box2">Second Cell</td>
+		</tr>
+	</table>
+</body>
+</html>
