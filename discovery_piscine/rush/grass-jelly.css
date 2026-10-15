@@ -1,0 +1,70 @@
+/* 1. Customize website appearance */
+:root {
+    --dark-green: #174D35;
+    --green: #2F7953;
+    --mint: #DDF2E3;
+    --cream: #FFF9ED;
+    --white: #FFFFFF;
+    --text-color: #333333;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--cream);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* 2. Consistent colors, fonts and layout */
+
+h1, h2, h3 {
+    color: var(--dark-green);
+    line-height: 1.3;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}3. Styling and Responsive Design (CSS)
+• Use CSS to customize the website appearance.
+• Maintain a consistent visual style, including colors, fonts, and layout.
+• Make the website responsive and usable on both desktop and mobile screens.
+• Organize content clearly so it is easy to read and navigate
+
+/* 3. Responsive design */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 16px;
+    }
+}
+
+/* 4. Clear and readable content */
+
+section {
+    padding: 40px 5%;
+}
+
+p {
+    line-height: 1.6;
+}
