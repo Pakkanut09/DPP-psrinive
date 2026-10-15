@@ -1,0 +1,308 @@
+```css
+/* ==============================
+   HerbaCool - Grass Jelly Website
+   ============================== */
+
+/* 1. Global Styles */
+:root {
+    --herbal-dark: #1a2e22;
+    --herbal-moss: #2d6a4f;
+    --herbal-mint: #52b788;
+    --herbal-light: #d8f3dc;
+    --herbal-cream: #f8f9f5;
+    --herbal-accent: #e76f51;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    margin: 0;
+    background-color: var(--herbal-cream);
+    color: #26352b;3. Styling and Responsive Design (CSS)
+• Use CSS to customize the website appearance.
+• Maintain a consistent visual style, including colors, fonts, and layout.
+• Make the website responsive and usable on both desktop and mobile screens.
+• Organize content clearly so it is easy to read and navigate
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+}
+
+/* 2. Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #edf2ed;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--herbal-moss);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--herbal-mint);
+}
+
+/* 3. Navigation Bar */
+.glass-nav {
+    background: rgba(26, 46, 34, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(82, 183, 136, 0.15);
+}
+
+header nav a {
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: var(--herbal-mint);
+}
+
+/* 4. Buttons */
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--herbal-mint);
+    outline-offset: 4px;
+}
+
+button:hover,
+a[class*="rounded-xl"]:hover {
+    transition: all 0.25s ease;
+}
+
+/* 5. Hero Section */
+#home {
+    position: relative;
+    overflow: hidden;
+}
+
+#home h1 {
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+#home h1 span {
+    color: var(--herbal-mint);
+}
+
+#home img {
+    transition: transform 0.5s ease;
+}
+
+#home img:hover {
+    transform: scale(1.03);
+}
+
+/* 6. Section Headings */
+section h2 {
+    letter-spacing: -0.5px;
+}
+
+section h3 {
+    line-height: 1.4;
+}
+
+/* 7. Product Cards */
+.product-card {
+    background: #ffffff;
+    border: 1px solid #e5eee7;
+    border-radius: 18px;
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 16px 35px rgba(26, 46, 34, 0.12);
+    border-color: var(--herbal-mint);
+}
+
+.product-card img {
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.06);
+}
+
+.product-card h3 {
+    color: var(--herbal-dark);
+}
+
+.product-card button {
+    transition: background-color 0.25s ease;
+}
+
+.product-card button:hover {
+    background-color: #1a2e22;
+}
+
+/* 8. Product Filter Buttons */
+.filter-btn {
+    border: 1px solid transparent;
+    transition: all 0.25s ease;
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+}
+
+.filter-btn.active-filter {
+    background-color: var(--herbal-moss);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+}
+
+/* 9. Health Benefits */
+#benefits > div > div:last-child > div {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#benefits > div > div:last-child > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(26, 46, 34, 0.08);
+}
+
+/* 10. Footer */
+footer {
+    background-color: var(--herbal-dark);
+}
+
+footer a {
+    transition: color 0.25s ease;
+}
+
+footer a:hover {
+    color: var(--herbal-mint);
+}
+
+/* 11. Shopping Cart */
+#cart-drawer {
+    max-height: 100dvh;
+    overflow-y: auto;
+}
+
+#cart-overlay {
+    transition: opacity 0.3s ease;
+}
+
+#cart-items-container img {
+    flex-shrink: 0;
+}
+
+/* 12. Toast Notifications */
+#toast-container {
+    max-width: calc(100vw - 40px);
+}
+
+#toast-container > div {
+    animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 13. Checkout Modal */
+#checkout-modal > div {
+    animation: fadeInUp 0.35s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 14. Form Inputs */
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--herbal-mint);
+    box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.15);
+}
+
+/* 15. Mobile Responsive */
+@media (max-width: 768px) {
+    #home {
+        padding-top: 3rem;
+        padding-bottom: 4rem;
+    }
+
+    #home h1 {
+        font-size: clamp(2rem, 7vw, 3rem);
+        letter-spacing: -0.5px;
+    }
+
+    #home img:hover {
+        transform: none;
+    }
+
+    .product-card:hover {
+        transform: translateY(-3px);
+    }
+
+    #benefits {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    footer {
+        padding-top: 3rem;
+    }
+}
+
+/* 16. Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+```
