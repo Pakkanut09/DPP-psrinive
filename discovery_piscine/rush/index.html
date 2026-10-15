@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HerbaCool</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#about">Skip to content</a>
+<nav aria-label="Main">
+  <b>HerbaCool</b>
+  <div><a href="#why">Why grass jelly</a><a href="#faq">FAQ</a><a href="shop.html">Shop</a></div>
+</nav>
+<header class="hero">
+  <div>
+    <h1>Cold grass jelly, ready to drink.</h1>
+    <p>Real herbal jelly in a bottle you can open anywhere. No cooking, no cutting, no waiting.</p>
+    <a class="btn" href="shop.html">Shop the bottles</a>
+  </div>
+  <img src="jelly.svg" alt="Cup of iced grass jelly drink with black jelly cubes and a green straw">
+</header>
+<main>
+  <section id="about">
+    <h2>What is grass jelly?</h2>
+    <p>Grass jelly (cincau, or chao kuay) is a dark, soft jelly made by boiling the leaves of a mint-family plant. It has a mild herbal taste, a smooth bite, and has been a street-side cooler across Southeast Asia for generations. We bottle it fresh with tea and fruit so you get the same drink in seconds.</p>
+  </section>
+  <section id="why">
+    <h2>Why you will like it</h2>
+    <div class="grid">
+      <div class="card"><h3>Cooling</h3><p>Served cold, it is the classic answer to hot, humid afternoons.</p></div>
+      <div class="card"><h3>Light</h3><p>Grass jelly is mostly water, so each bottle feels refreshing, not heavy.</p></div>
+      <div class="card"><h3>Convenient</h3><p>Shake, twist, drink. The jelly cubes are already in the bottle.</p></div>
+    </div>
+    <p><label for="mood">What do you need today? </label>
+    <select id="mood"><option value="">Choose one</option><option value="hot">Beat the heat</option><option value="tired">Reset after work</option><option value="treat">A sweet treat</option></select></p>
+    <p id="rec" aria-live="polite"></p>
+  </section>
+  <section id="faq">
+    <h2>Questions</h2>
+    <details><summary>How long does a bottle last?</summary><p>Keep it chilled and drink within 7 days of delivery.</p></details>
+    <details><summary>Is it vegan?</summary><p>Classic and fruity bottles are vegan. Creamy bottles contain milk or coconut milk.</p></details>
+    <details><summary>Where do you deliver?</summary><p>We deliver chilled across Bangkok and Samut Prakan.</p></details>
+  </section>
+</main>
+<footer><p>HerbaCool | pakkanut.srn45@gmail.com | Open daily 9:00 to 18:00</p></footer>
+<script src="script.js"></script>
+</body>
+</html>
