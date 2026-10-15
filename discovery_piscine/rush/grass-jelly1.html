@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerbaCool - Refreshing Ready-to-Drink Grass Jelly</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        herbal: {
+                            dark: '#1a2e22',
+                            moss: '#2d6a4f',
+                            mint: '#52b788',
+                            light: '#d8f3dc',
+                            cream: '#f8f9f5',
+                            accent: '#e76f51'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar & glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d6a4f;
+            border-radius: 4px;
+        }
+        .glass-nav {
+            background: rgba(26, 46, 34, 0.92);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-herbal-cream text-gray-800 font-sans antialiased selection:bg-herbal-mint selection:text-white">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3"></div>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="glass-nav text-white sticky top-0 z-40 shadow-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-herbal-mint flex items-center justify-center text-herbal-dark font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold tracking-tight text-white">Herba<span class="text-herbal-mint">Cool</span></span>
+                        <span class="block text-[10px] uppercase tracking-widest text-emerald-300">Refreshing Grass Jelly</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu Links -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                    <a href="#home" class="hover:text-herbal-mint transition-colors">Home</a>
+                    <a href="#products" class="hover:text-herbal-mint transition-colors">Products & Menu</a>
+                    <a href="#benefits" class="hover:text-herbal-mint transition-colors">Health Benefits</a>
+                    <a href="#builder" class="hover:text-herbal-mint transition-colors">Custom Drink Builder</a>
+                    <a href="#reviews" class="hover:text-herbal-mint transition-colors">Reviews</a>
+                    <a href="#contact" class="hover:text-herbal-mint transition-colors">Contact</a>
+                </nav>
+
+                <!-- Cart Button & Mobile Hamburger -->
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleCartDrawer()" class="relative bg-herbal-moss hover:bg-emerald-700 text-white p-2.5 rounded-full transition-colors flex items-center gap-2 px-4 shadow-md">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="hidden sm:inline text-xs font-semibold">Cart</span>
+                        <span id="cart-count" class="absolute -top-1.5 -right-1.5 bg-herbal-accent text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                    </button>
+
+                    <button id="mobile-menu-btn" class="md:hidden text-white hover:text-herbal-mint focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-herbal-dark border-t border-emerald-900/50 px-6 py-4 flex flex-col gap-4 shadow-xl">
+            <a href="#home" class="mobile-link hover:text-herbal-mint font-medium py-1">Home</a>
+            <a href="#products" class="mobile-link hover:text-herbal-mint font-medium py-1">Products & Menu</a>
+            <a href="#benefits" class="mobile-link hover:text-herbal-mint font-medium py-1">Health Benefits</a>
+            <a href="#builder" class="mobile-link hover:text-herbal-mint font-medium py-1">Custom Drink Builder</a>
+            <a href="#reviews" class="mobile-link hover:text-herbal-mint font-medium py-1">Reviews</a>
+            <a href="#contact" class="mobile-link hover:text-herbal-mint font-medium py-1">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section (Home) -->
+    <section id="home" class="relative bg-gradient-to-br from-herbal-dark via-emerald-950 to-herbal-moss text-white py-20 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#52b788_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center lg:text-left">
+                    <span class="inline-flex items-center gap-2 bg-emerald-900/80 border border-emerald-600/50 text-herbal-light px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase">
+                        <i class="fa-solid fa-sparkles text-herbal-mint"></i> 100% Authentic Herbal Infusion
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Cool Down Naturally, Sip the <span class="text-herbal-mint">Herbal Refreshment</span>
+                    </h1>
+                    <p class="text-gray-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0">
+                        Discover HerbaCool's ready-to-drink grass jelly beverages. Crafted with premium Mesona chinensis herbs to soothe your body, boost antioxidants, and deliver ultimate refreshment instantly.
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#products" class="bg-herbal-mint hover:bg-emerald-500 text-herbal-dark font-bold px-8 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
+                            Explore Menu
+                        </a>
+                        <a href="#builder" class="bg-transparent hover:bg-white/10 border-2 border-white/30 text-white font-semibold px-8 py-3 rounded-xl transition-all">
+                            Build Your Drink
+                        </a>
+                    </div>
+
+                    <!-- Highlights / Stats -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-emerald-800/60 max-w-md mx-auto lg:mx-0">
+                        <div>
+                            <p class="text-2xl lg:text-3xl font-bold text-herbal-mint">100%</p>
+                            <p class="text-xs text-gray-400">Natural Ingredients</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl lg:text-3xl font-bold text-herbal-mint">0g</p>
+                            <p class="text-xs text-gray-400">Preservatives</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl lg:text-3xl font-bold text-herbal-mint">Instant</p>
+                            <p class="text-xs text-gray-400">Body Cooling</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Showcase -->
+                <div class="relative flex justify-center">
+                    <div class="relative w-full max-w-md aspect-square bg-gradient-to-tr from-emerald-800/40 to-herbal-mint/20 rounded-3xl p-4 shadow-2xl border border-emerald-700/30 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1541658016709-82535e94bc69?auto=format&fit=crop&w=600&q=80" 
+                             onerror="this.src='https://placehold.co/500x500/1a2e22/52b788?text=HerbaCool+Drink'"
+                             alt="HerbaCool Grass Jelly Drink" 
+                             class="rounded-2xl object-cover w-full h-full shadow-lg transform hover:scale-105 transition-transform duration-500">
+                        <div class="absolute -bottom-6 -left-6 bg-herbal-dark/90 backdrop-blur border border-emerald-700/50 p-4 rounded-2xl shadow-xl flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-herbal-mint flex items-center justify-center text-herbal-dark font-bold">
+                                <i class="fa-solid fa-snowflake"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-300">Best Served</p>
+                                <p class="text-sm font-bold text-white">Chilled / On Ice</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products & Menu Section -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-herbal-moss font-semibold text-sm tracking-wider uppercase">Our Refreshing Lineup</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-herbal-dark mt-1">Ready-to-Drink Grass Jelly Menu</h2>
+                <p class="text-gray-600 mt-3 text-sm sm:text-base">Choose from our handcrafted herbal creations designed to satisfy your cravings and cool your system.</p>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button onclick="filterProducts('all')" class="filter-btn active-filter bg-herbal-moss text-white px-5 py-2 rounded-full text-sm font-semibold shadow transition-all">All Drinks</button>
+                <button onclick="filterProducts('classic')" class="filter-btn bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2 rounded-full text-sm font-semibold transition-all">Classic</button>
+                <button onclick="filterProducts('milky')" class="filter-btn bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2 rounded-full text-sm font-semibold transition-all">Milky Chill</button>
+                <button onclick="filterProducts('fruity')" class="filter-btn bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2 rounded-full text-sm font-semibold transition-all">Fruity Sparkle</button>
+            </div>
+
+            <!-- Product Cards Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product items injected dynamically or static cards -->
+                <!-- Item 1 -->
+                <div class="product-card bg-herbal-cream rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-all flex flex-col justify-between" data-category="classic">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-gray-200">
+                            <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=500&q=80" 
+                                 onerror="this.src='https://placehold.co/400x300/2d6a4f/ffffff?text=Classic+Brown+Sugar'"
+                                 alt="Classic Brown Sugar Grass Jelly" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                            <span class="absolute top-3 right-3 bg-herbal-dark/80 text-herbal-mint text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur">Classic</span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-herbal-dark">Classic Brown Sugar Grass Jelly</h3>
+                            <p class="text-xs text-gray-500 mt-1">Authentic herbal jelly infused with natural organic cane brown sugar syrup.</p>
+                            <div class="flex items-center gap-2 mt-3 text-xs text-emerald-800 font-medium">
+                                <i class="fa-solid fa-seedling"></i> Mesona Extract, Cane Sugar, Filtered Water
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex items-center justify-between border-t border-gray-200/60 mt-4">
+                        <span class="text-xl font-bold text-herbal-moss">$4.50</span>
+                        <button onclick="addToCart('Classic Brown Sugar Grass Jelly', 4.50, 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=500&q=80')" class="bg-herbal-moss hover:bg-emerald-800 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="product-card bg-herbal-cream rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-all flex flex-col justify-between" data-category="milky">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-gray-200">
+                            <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=500&q=80" 
+                                 onerror="this.src='https://placehold.co/400x300/2d6a4f/ffffff?text=Coconut+Milk+Chill'"
+                                 alt="Coconut Milk Herbal Chill" 
+                                 class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-herbal-dark/80 text-herbal-mint text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur">Milky Chill</span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-herbal-dark">Coconut Milk Herbal Chill</h3>
+                            <p class="text-xs text-gray-500 mt-1">Silky grass jelly paired with creamy, fragrant fresh coconut milk.</p>
+                            <div class="flex items-center gap-2 mt-3 text-xs text-emerald-800 font-medium">
+                                <i class="fa-solid fa-seedling"></i> Grass Jelly, Fresh Coconut Milk, Palm Sugar
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex items-center justify-between border-t border-gray-200/60 mt-4">
+                        <span class="text-xl font-bold text-herbal-moss">$5.20</span>
+                        <button onclick="addToCart('Coconut Milk Herbal Chill', 5.20, 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=500&q=80')" class="bg-herbal-moss hover:bg-emerald-800 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="product-card bg-herbal-cream rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-all flex flex-col justify-between" data-category="fruity">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-gray-200">
+                            <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=500&q=80" 
+                                 onerror="this.src='https://placehold.co/400x300/2d6a4f/ffffff?text=Honey+Lemon+Sparkle'"
+                                 alt="Honey Lemon Grass Jelly Sparkle" 
+                                 class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-herbal-dark/80 text-herbal-mint text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur">Fruity Sparkle</span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-herbal-dark">Honey Lemon Grass Jelly Sparkle</h3>
+                            <p class="text-xs text-gray-500 mt-1">Zesty lemon sparkling water with wild honey and tender herbal jelly cubes.</p>
+                            <div class="flex items-center gap-2 mt-3 text-xs text-emerald-800 font-medium">
+                                <i class="fa-solid fa-seedling"></i> Lemon Juice, Wild Honey, Sparkling Water, Jelly
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex items-center justify-between border-t border-gray-200/60 mt-4">
+                        <span class="text-xl font-bold text-herbal-moss">$4.80</span>
+                        <button onclick="addToCart('Honey Lemon Grass Jelly Sparkle', 4.80, 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=500&q=80')" class="bg-herbal-moss hover:bg-emerald-800 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="product-card bg-herbal-cream rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-all flex flex-col justify-between" data-category="milky">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-gray-200">
+                            <img src="https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=500&q=80" 
+                                 onerror="this.src='https://placehold.co/400x300/2d6a4f/ffffff?text=Matcha+Jelly+Latte'"
+                                 alt="Matcha Jelly Latte" 
+                                 class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-herbal-dark/80 text-herbal-mint text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur">Milky Chill</span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-herbal-dark">Matcha Jelly Latte</h3>
+                            <p class="text-xs text-gray-500 mt-1">Ceremonial grade Uji matcha layered over oat milk and herbal grass jelly.</p>
+                            <div class="flex items-center gap-2 mt-3 text-xs text-emerald-800 font-medium">
+                                <i class="fa-solid fa-seedling"></i> Matcha Green Tea, Oat Milk, Grass Jelly
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex items-center justify-between border-t border-gray-200/60 mt-4">
+                        <span class="text-xl font-bold text-herbal-moss">$5.80</span>
+                        <button onclick="addToCart('Matcha Jelly Latte', 5.80, 'https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=500&q=80')" class="bg-herbal-moss hover:bg-emerald-800 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Benefits Section -->
+    <section id="benefits" class="py-20 bg-herbal-cream border-y border-emerald-900/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-herbal-moss font-semibold text-sm tracking-wider uppercase">Wellness in Every Sip</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-herbal-dark mt-1">Why Choose HerbaCool Grass Jelly?</h2>
+                <p class="text-gray-600 mt-3 text-sm sm:text-base">Traditional herbal wisdom meets modern refreshment to promote holistic well-being.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-emerald-100 hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-herbal-light text-herbal-moss rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-snowflake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-herbal-dark mb-3">Natural Body Cooling</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Mesona chinensis is renowned in traditional herbalism for its natural cooling properties, helping to reduce body heat during hot days or after strenuous workouts.
+                    </p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-emerald-100 hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-herbal-light text-herbal-moss rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-herbal-dark mb-3">High Antioxidants</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Packed with natural polyphenols and plant antioxidants that help combat oxidative stress, protect cells, and support overall cellular health.
+                    </p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-emerald-100 hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-herbal-light text-herbal-moss rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-feather"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-herbal-dark mb-3">Digestive & Gut Health</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Low in calories and rich in soluble dietary fiber, grass jelly supports smooth digestion and provides a satisfying, guilt-free snack experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Drink Builder Section -->
+    <section id="builder" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-herbal-moss font-semibold text-sm tracking-wider uppercase">Interactive Creator</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-herbal-dark mt-1">Build Your Custom Drink</h2>
+                <p class="text-gray-600 mt-3 text-sm sm:text-base">Design your personal herbal creation by selecting your preferred base, sweetness level, and toppings.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+                <!-- Builder Controls (2 Cols) -->
+                <div class="lg:col-span-2 space-y-8 bg-herbal-cream p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-sm">
+                    <!-- Step 1: Base Liquid -->
+                    <div>
+                        <label class="block text-sm font-bold text-herbal-dark mb-3">1. Choose Your Base Liquid</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="base-liquid" value="Fresh Milk" data-price="4.50" checked class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-4 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <i class="fa-solid fa-cow text-xl text-herbal-moss mb-1"></i>
+                                    <p class="text-xs font-bold text-gray-800">Fresh Milk</p>
+                                    <p class="text-[10px] text-gray-500">+$4.50</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="base-liquid" value="Oat Milk" data-price="5.00" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-4 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <i class="fa-solid fa-wheat-awn text-xl text-herbal-moss mb-1"></i>
+                                    <p class="text-xs font-bold text-gray-800">Oat Milk</p>
+                                    <p class="text-[10px] text-gray-500">+$5.00</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="base-liquid" value="Coconut Water" data-price="4.20" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-4 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <i class="fa-solid fa-water text-xl text-herbal-moss mb-1"></i>
+                                    <p class="text-xs font-bold text-gray-800">Coconut Water</p>
+                                    <p class="text-[10px] text-gray-500">+$4.20</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="base-liquid" value="Jasmine Green Tea" data-price="4.00" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-4 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <i class="fa-solid fa-mug-hot text-xl text-herbal-moss mb-1"></i>
+                                    <p class="text-xs font-bold text-gray-800">Jasmine Tea</p>
+                                    <p class="text-[10px] text-gray-500">+$4.00</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Sweetness Level -->
+                    <div>
+                        <label class="block text-sm font-bold text-herbal-dark mb-3">2. Select Sweetness Level</label>
+                        <div class="grid grid-cols-3 sm:grid-cols-5 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="sweetness" value="0%" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-3 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <p class="text-xs font-bold text-gray-800">0%</p>
+                                    <p class="text-[10px] text-gray-500">Unsweetened</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="sweetness" value="30%" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-3 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <p class="text-xs font-bold text-gray-800">30%</p>
+                                    <p class="text-[10px] text-gray-500">Light</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="sweetness" value="50%" checked class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-3 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <p class="text-xs font-bold text-gray-800">50%</p>
+                                    <p class="text-[10px] text-gray-500">Regular</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="sweetness" value="70%" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-3 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <p class="text-xs font-bold text-gray-800">70%</p>
+                                    <p class="text-[10px] text-gray-500">Sweet</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="sweetness" value="100%" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-3 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <p class="text-xs font-bold text-gray-800">100%</p>
+                                    <p class="text-[10px] text-gray-500">Extra Sweet</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Toppings -->
+                    <div>
+                        <label class="block text-sm font-bold text-herbal-dark mb-3">3. Add Toppings (+$0.75 each)</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="topping" value="Chia Seeds" data-price="0.75" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-3 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <p class="text-xs font-bold text-gray-800">Chia Seeds</p>
+                                    <p class="text-[10px] text-gray-500">+$0.75</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="topping" value="Aloe Vera" data-price="0.75" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-3 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <p class="text-xs font-bold text-gray-800">Aloe Vera</p>
+                                    <p class="text-[10px] text-gray-500">+$0.75</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="topping" value="Golden Boba" data-price="0.75" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-3 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <p class="text-xs font-bold text-gray-800">Golden Boba</p>
+                                    <p class="text-[10px] text-gray-500">+$0.75</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="topping" value="Extra Jelly" data-price="0.75" class="peer sr-only" onchange="updateBuilderPrice()">
+                                <div class="p-3 rounded-2xl border-2 border-gray-200 peer-checked:border-herbal-moss peer-checked:bg-emerald-50 text-center transition-all">
+                                    <p class="text-xs font-bold text-gray-800">Extra Jelly</p>
+                                    <p class="text-[10px] text-gray-500">+$0.75</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Summary & Add to Cart -->
+                <div class="bg-herbal-dark text-white p-6 sm:p-8 rounded-3xl shadow-xl sticky top-28 space-y-6">
+                    <h3 class="text-xl font-bold border-b border-emerald-800 pb-4 flex items-center justify-between">
+                        <span>Your Custom Drink</span>
+                        <i class="fa-solid fa-glass-water text-herbal-mint"></i>
+                    </h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Base Liquid:</span>
+                            <span id="summary-base" class="font-semibold">Fresh Milk</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Sweetness:</span>
+                            <span id="summary-sweetness" class="font-semibold">50%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Toppings:</span>
+                            <span id="summary-toppings" class="font-semibold text-right">None</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-emerald-800 flex items-center justify-between">
+                        <span class="text-gray-300 font-medium">Total Price:</span>
+                        <span id="builder-total" class="text-2xl font-bold text-herbal-mint">$4.50</span>
+                    </div>
+                    <button onclick="addCustomDrinkToCart()" class="w-full bg-herbal-mint hover:bg-emerald-500 text-herbal-dark font-bold py-3.5 rounded-xl shadow transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-plus"></i> Add Custom Drink to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews & Feedback Section -->
+    <section id="reviews" class="py-20 bg-herbal-cream border-y border-emerald-900/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-herbal-moss font-semibold text-sm tracking-wider uppercase">Community Love</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-herbal-dark mt-1">What Our Drinkers Say</h2>
+                <p class="text-gray-600 mt-3 text-sm sm:text-base">Real reviews from people who love refreshing with HerbaCool every single day.</p>
+            </div>
+
+            <!-- Review Cards Grid -->
+            <div id="reviews-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-emerald-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm italic mb-6">"The Classic Brown Sugar Grass Jelly is my ultimate afternoon pick-me-up! So refreshing and instantly cools me down after a hot run."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                        <div class="w-10 h-10 rounded-full bg-herbal-moss text-white font-bold flex items-center justify-center text-sm">JS</div>
+                        <div>
+                            <p class="font-bold text-sm text-herbal-dark">Jessica S.</p>
+                            <p class="text-[11px] text-gray-400">Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-emerald-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm italic mb-6">"I built my own oat milk herbal chill with chia seeds. Amazing flavor and zero guilt. Delivery was fast and bottles were super chilled!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                        <div class="w-10 h-10 rounded-full bg-herbal-moss text-white font-bold flex items-center justify-center text-sm">DM</div>
+                        <div>
+                            <p class="font-bold text-sm text-herbal-dark">David Miller</p>
+                            <p class="text-[11px] text-gray-400">Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-emerald-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm italic mb-6">"The coconut milk herbal chill feels so luxurious. You can tell real herbs are used instead of artificial powder. 10/10!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                        <div class="w-10 h-10 rounded-full bg-herbal-moss text-white font-bold flex items-center justify-center text-sm">AL</div>
+                        <div>
+                            <p class="font-bold text-sm text-herbal-dark">Amanda Lee</p>
+                            <p class="text-[11px] text-gray-400">Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Submission Form -->
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-3xl shadow-md border border-emerald-100">
+                <h3 class="text-xl font-bold text-herbal-dark mb-2 text-center">Leave Your Review</h3>
+                <p class="text-gray-500 text-xs text-center mb-6">Share your experience with fellow HerbaCool fans.</p>
+                <form id="review-form" onsubmit="submitReview(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Your Name</label>
+                        <input type="text" id="review-name" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-herbal-moss" placeholder="Enter your name">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Rating</label>
+                        <select id="review-rating" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-herbal-moss">
+                            <option value="5">★★★★★ (5 Stars - Excellent)</option>
+                            <option value="4">★★★★☆ (4 Stars - Great)</option>
+                            <option value="3">★★★☆☆ (3 Stars - Good)</option>
+                            <option value="2">★★☆☆☆ (2 Stars - Fair)</option>
+                            <option value="1">★☆☆☆☆ (1 Star - Poor)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Your Review</label>
+                        <textarea id="review-comment" required rows="3" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-herbal-moss" placeholder="Tell us how you liked your drink..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-herbal-moss hover:bg-emerald-800 text-white font-bold py-3 rounded-xl shadow transition-colors text-sm">
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-herbal-moss font-semibold text-sm tracking-wider uppercase">Get in Touch</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-herbal-dark">We'd Love to Hear From You</h2>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                        Have questions about our ingredients, wholesale inquiries, or retail locations? Drop us a message and our team will get back to you within 24 hours.
+                    </p>
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-center gap-4 text-gray-700">
+                            <div class="w-10 h-10 rounded-full bg-herbal-light text-herbal-moss flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <span class="text-sm">123 Herbal Avenue, Green District, CA 90210</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-gray-700">
+                            <div class="w-10 h-10 rounded-full bg-herbal-light text-herbal-moss flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <span class="text-sm">hello@herbacool.com</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-gray-700">
+                            <div class="w-10 h-10 rounded-full bg-herbal-light text-herbal-moss flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <span class="text-sm">+1 (800) 555-HERB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-herbal-cream p-8 rounded-3xl border border-gray-100 shadow-sm">
+                    <form onsubmit="submitContact(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Full Name</label>
+                            <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-herbal-moss bg-white" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Email Address</label>
+                            <input type="email" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-herbal-moss bg-white" placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Message</label>
+                            <textarea required rows="4" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-herbal-moss bg-white" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-herbal-moss hover:bg-emerald-800 text-white font-bold py-3 rounded-xl shadow transition-colors text-sm">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-herbal-dark text-white pt-16 pb-12 border-t border-emerald-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-herbal-mint flex items-center justify-center text-herbal-dark font-bold text-sm">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">Herba<span class="text-herbal-mint">Cool</span></span>
+                    </div>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Refreshing ready-to-drink herbal grass jelly crafted to keep you cool, healthy, and revitalized all day long.
+                    </p>
+                    <div class="flex gap-3 text-herbal-mint">
+                        <a href="#" class="w-8 h-8 rounded-full bg-emerald-900/60 flex items-center justify-center hover:bg-herbal-mint hover:text-herbal-dark transition-colors"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-emerald-900/60 flex items-center justify-center hover:bg-herbal-mint hover:text-herbal-dark transition-colors"><i class="fa-brands fa-instagram text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-emerald-900/60 flex items-center justify-center hover:bg-herbal-mint hover:text-herbal-dark transition-colors"><i class="fa-brands fa-twitter text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-emerald-900/60 flex items-center justify-center hover:bg-herbal-mint hover:text-herbal-dark transition-colors"><i class="fa-brands fa-tiktok text-xs"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#home" class="hover:text-herbal-mint transition-colors">Home</a></li>
+                        <li><a href="#products" class="hover:text-herbal-mint transition-colors">Products & Menu</a></li>
+                        <li><a href="#benefits" class="hover:text-herbal-mint transition-colors">Health Benefits</a></li>
+                        <li><a href="#builder" class="hover:text-herbal-mint transition-colors">Custom Drink Builder</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm text-white mb-4">Customer Care</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#reviews" class="hover:text-herbal-mint transition-colors">Customer Reviews</a></li>
+                        <li><a href="#contact" class="hover:text-herbal-mint transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-herbal-mint transition-colors">Shipping & Returns</a></li>
+                        <li><a href="#" class="hover:text-herbal-mint transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm text-white mb-4">Newsletter</h4>
+                    <p class="text-xs text-gray-400 mb-3">Subscribe to get special offers, free herbal recipes, and updates.</p>
+                    <form onsubmit="subscribeNewsletter(event)" class="flex flex-col gap-2">
+                        <input type="email" id="newsletter-email" required placeholder="Enter your email" class="px-3.5 py-2.5 rounded-xl bg-emerald-900/40 border border-emerald-800 text-xs text-white placeholder-gray-400 focus:outline-none focus:border-herbal-mint">
+                        <button type="submit" class="bg-herbal-mint hover:bg-emerald-500 text-herbal-dark font-bold py-2 rounded-xl text-xs transition-colors">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-emerald-900/50 pt-6 text-center text-xs text-gray-500">
+                &copy; 2026 HerbaCool. All rights reserved. Crafted for natural refreshment.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Drawer Overlay -->
+    <div id="cart-overlay" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/50 z-50 hidden backdrop-blur-sm transition-opacity"></div>
+
+    <!-- Shopping Cart Drawer Panel -->
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-herbal-dark text-white">
+            <h3 class="font-bold text-lg flex items-center gap-2">
+                <i class="fa-solid fa-cart-shopping text-herbal-mint"></i> Your Shopping Cart
+            </h3>
+            <button onclick="toggleCartDrawer()" class="text-gray-300 hover:text-white p-1">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items List Container -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-4">
+            <!-- Empty cart state -->
+            <div id="empty-cart-message" class="text-center py-20 text-gray-400 space-y-3">
+                <i class="fa-solid fa-cart-arrow-down text-5xl text-gray-300"></i>
+                <p class="text-sm font-medium">Your cart is empty.</p>
+                <a href="#products" onclick="toggleCartDrawer()" class="inline-block bg-herbal-moss text-white text-xs font-semibold px-4 py-2 rounded-xl">Start Shopping</a>
+            </div>
+            <!-- Container for rendered cart item cards -->
+            <div id="cart-items-container" class="space-y-4"></div>
+        </div>
+
+        <!-- Cart Footer Summary -->
+        <div id="cart-footer" class="p-6 border-t border-gray-100 bg-gray-50 space-y-4 hidden">
+            <div class="space-y-2 text-sm">
+                <div class="flex justify-between text-gray-600">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal" class="font-bold">$0.00</span>
+                </div>
+                <div class="flex justify-between text-gray-600">
+                    <span>Shipping</span>
+                    <span class="font-bold text-emerald-600">FREE</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-herbal-dark border-t border-gray-200 pt-2">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+            </div>
+            <button onclick="checkoutCart()" class="w-full bg-herbal-moss hover:bg-emerald-800 text-white font-bold py-3 rounded-xl shadow transition-colors text-sm">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Success Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center space-y-4 shadow-2xl animate-fade-in">
+            <div class="w-16 h-16 bg-emerald-100 text-herbal-moss rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-herbal-dark">Order Placed Successfully!</h3>
+            <p class="text-gray-600 text-sm">Thank you for choosing HerbaCool. Your order is being freshly prepared and will be delivered chilled soon.</p>
+            <button onclick="closeCheckoutModal()" class="w-full bg-herbal-moss hover:bg-emerald-800 text-white font-bold py-3 rounded-xl text-sm transition-colors">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Toast Notification System
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl text-white text-xs font-semibold transform translate-y-5 opacity-0 transition-all duration-300 ${
+                type === 'success' ? 'bg-herbal-moss' : 'bg-herbal-accent'
+            }`;
+            toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'} text-base"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-5', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-5', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Product Category Filter
+        function filterProducts(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-herbal-moss', 'text-white', 'active-filter');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+            });
+            event.target.classList.remove('bg-gray-100', 'text-gray-700');
+            event.target.classList.add('bg-herbal-moss', 'text-white', 'active-filter');
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Shopping Cart State
+        let cart = [];
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            const isClosed = drawer.classList.contains('translate-x-full');
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function addToCart(name, price, image) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, image, quantity: 1 });
+            }
+            updateCartUI();
+            showToast(`Added ${name} to cart!`);
+        }
+
+        function updateQuantity(name, change) {
+            const item = cart.find(i => i.name === name);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const countBadge = document.getElementById('cart-count');
+            const container = document.getElementById('cart-items-container');
+            const footer = document.getElementById('cart-footer');
+            const emptyMsg = document.getElementById('empty-cart-message');
+
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (countBadge) countBadge.textContent = totalCount;
+
+            if (!emptyMsg || !container || !footer) return;
+
+            if (cart.length === 0) {
+                emptyMsg.style.display = 'block';
+                footer.classList.add('hidden');
+                container.innerHTML = '';
+                return;
+            }
+
+            emptyMsg.style.display = 'none';
+            footer.classList.remove('hidden');
+
+            let html = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+                html += `
+                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-2xl border border-gray-100">
+                        <img src="${item.image}" onerror="this.src='https://placehold.co/100x100/2d6a4f/ffffff?text=Drink'" class="w-16 h-16 object-cover rounded-xl">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-xs text-herbal-dark">${item.name}</h4>
+                            <p class="text-xs font-semibold text-herbal-moss mt-1">$${item.price.toFixed(2)}</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button onclick="updateQuantity('${item.name}', -1)" class="w-6 h-6 rounded-lg bg-gray-200 hover:bg-gray-300 text-xs font-bold flex items-center justify-center">-</button>
+                                <span class="text-xs font-bold">${item.quantity}</span>
+                                <button onclick="updateQuantity('${item.name}', 1)" class="w-6 h-6 rounded-lg bg-gray-200 hover:bg-gray-300 text-xs font-bold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+            if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            if (totalEl) totalEl.textContent = `$${subtotal.toFixed(2)}`;
+        }
+
+        function checkoutCart() {
+            if (cart.length === 0) return;
+            toggleCartDrawer();
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            cart = [];
+            updateCartUI();
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Custom Drink Builder Logic
+        function updateBuilderPrice() {
+            const baseRadio = document.querySelector('input[name="base-liquid"]:checked');
+            const sweetnessRadio = document.querySelector('input[name="sweetness"]:checked');
+            const toppingCheckboxes = document.querySelectorAll('input[name="topping"]:checked');
+
+            const basePrice = baseRadio ? parseFloat(baseRadio.dataset.price) : 4.50;
+            const baseName = baseRadio ? baseRadio.value : 'Fresh Milk';
+            const sweetnessName = sweetnessRadio ? sweetnessRadio.value : '50%';
+
+            let toppingsNames = [];
+            let toppingsTotal = 0;
+            toppingCheckboxes.forEach(cb => {
+                toppingsNames.push(cb.value);
+                toppingsTotal += parseFloat(cb.dataset.price);
+            });
+
+            const totalPrice = basePrice + toppingsTotal;
+
+            // Update UI
+            document.getElementById('summary-base').textContent = baseName;
+            document.getElementById('summary-sweetness').textContent = sweetnessName;
+            document.getElementById('summary-toppings').textContent = toppingsNames.length > 0 ? toppingsNames.join(', ') : 'None';
+            document.getElementById('builder-total').textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function addCustomDrinkToCart() {
+            const baseRadio = document.querySelector('input[name="base-liquid"]:checked');
+            const sweetnessRadio = document.querySelector('input[name="sweetness"]:checked');
+            const toppingCheckboxes = document.querySelectorAll('input[name="topping"]:checked');
+
+            const baseName = baseRadio ? baseRadio.value : 'Fresh Milk';
+            const sweetnessName = sweetnessRadio ? sweetnessRadio.value : '50%';
+            let toppingsNames = [];
+            let toppingsTotal = 0;
+
+            toppingCheckboxes.forEach(cb => {
+                toppingsNames.push(cb.value);
+                toppingsTotal += parseFloat(cb.dataset.price);
+            });
+
+            const basePrice = baseRadio ? parseFloat(baseRadio.dataset.price) : 4.50;
+            const totalPrice = basePrice + toppingsTotal;
+
+            const customName = `Custom ${baseName} (${sweetnessName}${toppingsNames.length > 0 ? ', ' + toppingsNames.join(', ') : ''})`;
+
+            addToCart(customName, totalPrice, 'https://images.unsplash.com/photo-1541658016709-82535e94bc69?auto=format&fit=crop&w=500&q=80');
+        }
+
+        // Review Submission
+        function submitReview(event) {
+            event.preventDefault();
+            const name = document.getElementById('review-name').value;
+            const rating = parseInt(document.getElementById('review-rating').value);
+            const comment = document.getElementById('review-comment').value;
+
+            const starsHtml = '<i class="fa-solid fa-star"></i>'.repeat(rating);
+            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+
+            const grid = document.getElementById('reviews-grid');
+            const newCard = document.createElement('div');
+            newCard.className = 'bg-white p-6 rounded-3xl shadow-sm border border-emerald-100 flex flex-col justify-between animate-fade-in';
+            newCard.innerHTML = `
+                <div>
+                    <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
+                        ${starsHtml}
+                    </div>
+                    <p class="text-gray-700 text-sm italic mb-6">"${comment}"</p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                    <div class="w-10 h-10 rounded-full bg-herbal-moss text-white font-bold flex items-center justify-center text-sm">${initials}</div>
+                    <div>
+                        <p class="font-bold text-sm text-herbal-dark">${name}</p>
+                        <p class="text-[11px] text-gray-400">Verified Customer</p>
+                    </div>
+                </div>
+            `;
+            grid.prepend(newCard);
+            document.getElementById('review-form').reset();
+            showToast('Thank you! Your review has been posted.');
+        }
+
+        // Contact & Newsletter forms
+        function submitContact(event) {
+            event.preventDefault();
+            showToast('Message sent successfully! We will contact you soon.');
+            event.target.reset();
+        }
+
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            showToast('Thank you for subscribing to HerbaCool!');
+            event.target.reset();
+        }
+
+        // Initialize builder on load
+        window.onload = () => {
+            updateBuilderPrice();
+        };
+    </script>
+</body>
+</html>
