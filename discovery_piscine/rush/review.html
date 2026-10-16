@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HerbaCool Reviews</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#10201a;--jelly:#1c2421;--leaf:#6dbb5a;--mint:#e8f4e1;--honey:#f0b43c;--paper:#fffdf8;--line:rgba(16,32,26,.12)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:4rem}
+    body{margin:0;font:1.05rem/1.6 "Bricolage Grotesque",system-ui,sans-serif;color:var(--ink);background:var(--mint)}
+    a{color:inherit;text-decoration:none}
+    a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid var(--honey);outline-offset:3px}
+    .skip{position:absolute;left:-999px}.skip:focus{left:0;top:0;z-index:20;background:var(--honey);padding:.5rem 1rem}
+    nav{position:sticky;top:0;z-index:9;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:.8rem 5%;background:var(--jelly);color:#fff}
+    nav b{font-size:1.3rem}
+    nav a{color:#fff;text-decoration:none;margin-left:1.2rem;transition:color .2s}
+    nav a:hover{color:var(--honey)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:2rem;padding:4rem 5%;background:var(--jelly);color:#fff}
+    .eyebrow{display:inline-block;padding:.55rem .9rem;border-radius:999px;background:rgba(255,255,255,.08);color:#eaf5df;font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .hero h1{font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.02;letter-spacing:-.05em;margin:1rem 0 1rem}
+    .hero p{margin:0;max-width:38rem;color:#dcf2d2}
+    .stat-wrap{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem}
+    .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1rem 1.2rem;min-width:8.5rem}
+    .stat strong{display:block;font-size:1.6rem;line-height:1;color:#fff}
+    .stat span{color:#d9e7d4;font-size:.9rem}
+    .visual{display:flex;align-items:center;justify-content:center;min-height:22rem;border-radius:1.75rem;background:linear-gradient(135deg,#dfeec2,#f0d79d);box-shadow:0 20px 40px rgba(0,0,0,.18)}
+    .product-image{display:block;width:min(19rem,72%);height:auto;filter:drop-shadow(0 18px 28px rgba(23,35,25,.22));}
+    main{padding:3rem 5% 4rem;max-width:1100px;margin:auto}
+    section{margin-top:2rem}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1.5rem}
+    .section-head h2{margin:0;font-size:clamp(2rem,3vw,3rem);line-height:1.1;letter-spacing:-.05em}
+    .section-head p{margin:0;color:#425445}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
+    .card{background:#fff;border-radius:1rem;padding:1.2rem;border-left:6px solid var(--leaf);box-shadow:0 10px 24px rgba(16,32,26,.07)}
+    .stars{color:#e7b749;letter-spacing:.08em;font-size:1.15rem;margin-bottom:.7rem}
+    .card p{margin:0 0 1.1rem;color:var(--ink)}
+    .person{display:flex;align-items:center;gap:.8rem;border-top:1px solid var(--line);padding-top:.9rem}
+    .avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--leaf),#f3d38d);font-weight:700;color:var(--jelly)}
+    .person strong{display:block;line-height:1.1}
+    .person span{color:#536153;font-size:.85rem}
+    footer{background:var(--jelly);color:#fff;text-align:center;padding:1.5rem}
+    @media(max-width:700px){.hero{grid-template-columns:1fr;text-align:center}.hero p{margin:auto}.nav-links{display:flex;flex-wrap:wrap;gap:.5rem .8rem}.nav-links a{margin-left:0} .section-head{flex-direction:column;align-items:flex-start}} 
+  </style>
+</head>
+<body>
+  <a class="skip" href="#reviews">Skip to reviews</a>
+
+  <nav aria-label="Main navigation">
+    <a href="index.html" aria-label="HerbaCool home"><b>HerbaCool</b></a>
+    <div class="nav-links">
+      <a href="index.html#why">Why grass jelly</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="shop.html">Shop</a>
+      <a href="review.html" aria-current="page">Reviews</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <span class="eyebrow">Customer love</span>
+      <h1>People keep coming back for a cooler sip.</h1>
+      <p>From afternoon resets to post-work treats, Bangkok customers are making HerbaCool part of their daily routine.</p>
+      <div class="stat-wrap" aria-label="Review statistics">
+        <div class="stat"><strong>4.9/5</strong><span>average rating</span></div>
+        <div class="stat"><strong>2.4k+</strong><span>bottles sold</span></div>
+        <div class="stat"><strong>96%</strong><span>would reorder</span></div>
+      </div>
+    </div>
+    <div class="visual">
+      <img class="product-image" src="jelly.svg" alt="HerbaCool grass jelly drink bottle" />
+    </div>
+  </header>
+
+  <main id="reviews">
+    <section aria-labelledby="review-heading">
+      <div class="section-head">
+        <h2 id="review-heading">What people are saying</h2>
+        <p>Verified reviews from real customers</p>
+      </div>
+      <div id="reviewsGrid" class="grid" aria-live="polite"></div>
+    </section>
+
+    <section aria-labelledby="highlight-heading">
+      <div class="section-head">
+        <h2 id="highlight-heading">Why customers love it</h2>
+      </div>
+      <div id="highlights" class="grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>HerbaCool | pakkanut.srn45@gmail.com | Open daily 9:00 to 18:00</p>
+  </footer>
+
+  <script>
+    const reviews = [
+      {name:'Natt', city:'Bangkok', text:'“The classic grass jelly bottle tastes exactly like the one from the old neighborhood shop, but way more convenient. It is my go-to when the weather gets brutal.”'},
+      {name:'Pim', city:'Samut Prakan', text:'“I bought a case for my office fridge and it disappeared in two days. Super refreshing, not too sweet, and the jelly texture is perfect.”'},
+      {name:'Anya', city:'Bangkok', text:'“The fruity version is my favorite. It feels light and refreshing after work, and the bottle looks nice enough to keep on my desk.”'}
+    ];
+
+    const highlights = [
+      ['Cool and refreshing', 'Customers love that it hits the spot on hot afternoons with a clean, herbal finish.'],
+      ['Easy to enjoy', 'No prep, no kitchen mess, and the ready-to-drink bottle makes it easy to bring anywhere.'],
+      ['Classic taste', 'Each bottle keeps the smooth chew and familiar flavor that make grass jelly such a favorite.']
+    ];
+
+    const reviewsGrid = document.querySelector('#reviewsGrid');
+    const highlightsBox = document.querySelector('#highlights');
+
+    if (reviewsGrid) {
+      reviewsGrid.innerHTML = reviews.map(({name, city, text}) => `
+        <article class="card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p>${text}</p>
+          <div class="person">
+            <div class="avatar">${name[0]}</div>
+            <div>
+              <strong>${name}</strong>
+              <span>${city}</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    if (highlightsBox) {
+      highlightsBox.innerHTML = highlights.map(([title, copy]) => `
+        <article class="card">
+          <h3>${title}</h3>
+          <p>${copy}</p>
+        </article>
+      `).join('');
+    }
+  </script>
+</body>
+</html>
